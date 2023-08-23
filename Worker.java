@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -19,16 +20,25 @@ public class Worker implements Runnable
     {
         try 
         {
-            queue.take();
+            System.out.println("QUEUE READY");
+           while(true)
+           {
+                checkMedia(queue.take());
+           } 
+            
         } 
         catch (InterruptedException e) 
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        catch (Exception e)
+        {
+             e.printStackTrace();
+        }
     }
 
-    public void checkMedia(Media media)
+    public void checkMedia(Media media) throws IOException
     {
         if(media.getMediaType() == Mediatype.MUSIC)
         {
@@ -44,7 +54,7 @@ public class Worker implements Runnable
         }
     }
 
-    public void downloadVideo(Media media)
+    public void downloadVideo(Media media) throws IOException
     {
         cb.downloadVideo(media.getLink());
 
@@ -58,8 +68,19 @@ public class Worker implements Runnable
 
     public void downloadMusic(Media media)
     {
-        cb.downloadMusic(media.getLink());
+        try 
+        {
+            cb.downloadMusic(media.getLink());
+        } catch (Exception e) 
+        {
+            System.out.println("Ein Fehler ist aufgetreten");
+        }
 
+    }
+
+    public void addMedia(Media m)
+    {
+        System.out.println(queue.add(m));
     }
 
     
