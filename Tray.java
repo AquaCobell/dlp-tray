@@ -16,6 +16,8 @@ public class Tray
     Clipboardreader reader;
     Worker worker;
     Thread t1;
+
+    
        
 
     Tray()
@@ -29,11 +31,14 @@ public class Tray
     public void loadTray() throws AWTException
     {
         TrayIcon trayIcon = null;
+      
         if(SystemTray.isSupported())
         {
             SystemTray tray = SystemTray.getSystemTray();
-            Image image = Toolkit.getDefaultToolkit().getImage("icon.png");
+
             
+            Image image = Toolkit.getDefaultToolkit().getImage("icon.png");
+
             PopupMenu popup = new PopupMenu();
 
             MenuItem downloadMusic= new MenuItem("Download Music");
@@ -78,11 +83,11 @@ public class Tray
 
 
             trayIcon = new TrayIcon(image, "DLP-Tray",popup);
+            trayIcon.setImageAutoSize(true);
 
             tray.add(trayIcon);
     
-            //https://stackoverflow.com/questions/758083/how-do-i-put-a-java-app-in-the-system-tray
-            
+   
            
 
     

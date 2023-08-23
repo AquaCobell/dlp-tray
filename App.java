@@ -26,10 +26,6 @@ public class App
         //Media media = new Media("https://www.youtube.com/watch?v=mQS6nPMSSBY", Mediatype.VIDEO);
         //worker.downloadVideo(media);
       
- 
-
-
-
 
                 /* 
 
